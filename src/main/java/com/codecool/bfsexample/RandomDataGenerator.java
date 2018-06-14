@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomDataGenerator {
+class RandomDataGenerator {
 
     private Random rng = new Random(1234);
     private String[] firstNames = {
@@ -17,11 +17,12 @@ public class RandomDataGenerator {
 
     private String[] lastNames =  {
             "Winifred", "Tanner", "Rajah", "Cedric", "Tyler", "Nicholas", "Abra", "Aurora",
-            "Bryar", "Kibo", "Myles", "Hillary", "Lydia", "Dolan", "Lucian", "Prescott"
+            "Bryar", "Kibo", "Myles", "Hillary", "Lydia", "Dolan", "Lucian", "Prescott",
+            "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson"
     };
 
 
-    public List<UserNode> generate() {
+    List<UserNode> generate() {
         List<UserNode> users = new ArrayList<>();
         UserNode firstUser = genNewUser();
         users.add(firstUser);
@@ -29,7 +30,7 @@ public class RandomDataGenerator {
         genTree(firstUser, users, 4);
         // then introduce some loops
         for (int i = 0; i < users.size() - 30; i++) {
-            if (i % 5 == 0) {
+            if (i % 4 == 0) {
                 users.get(i).addFriend(users.get(i + 30));
             }
         }

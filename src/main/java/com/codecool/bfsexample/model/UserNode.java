@@ -1,38 +1,28 @@
 package com.codecool.bfsexample.model;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 public class UserNode {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // feel free to add new properties or methods here
+
     private long id;
+    private static long idCounter = 0;
     private String firstName;
     private String lastName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="Friendship",
-            joinColumns=@JoinColumn(name="UserNode"),
-            inverseJoinColumns=@JoinColumn(name="FriendNode"))
     private Set<UserNode> friends = new HashSet<>();
 
-    public UserNode() {}
-
     public UserNode(String firstName, String lastName) {
+        this.id = idCounter;
+        idCounter++;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Set<UserNode> getFriends() {return friends;}
@@ -56,5 +46,9 @@ public class UserNode {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String toString() {
+        return firstName + "_" + lastName + " (" + id + ")";
     }
 }
