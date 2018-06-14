@@ -8,6 +8,7 @@ import org.graphstream.graph.implementations.SingleGraph;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class GraphPlotter {
 
@@ -76,7 +77,7 @@ public class GraphPlotter {
     }
 
 
-    // you can use this helper function to visualize routes in the graph
+    // Helper method to visualize routes in the graph
     void highlightRoute(List<List<UserNode>> ways){
         for (List<UserNode> points : ways) {
             for (UserNode userNode: points) {
@@ -102,5 +103,15 @@ public class GraphPlotter {
                 }
             }
         }
+    }
+
+    // Helper method to highlight a set of nodes plus a special one
+    void highlightNodes(Set<UserNode> nodes, UserNode special) {
+        for (UserNode n : nodes) {
+            Node node = graph.getNode(Long.toString(n.getId()));
+            node.addAttribute("ui.class", "highlight");
+        }
+        Node node = graph.getNode(Long.toString(special.getId()));
+        node.addAttribute("ui.class", "first");
     }
 }
