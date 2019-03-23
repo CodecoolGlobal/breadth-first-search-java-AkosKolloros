@@ -2,7 +2,9 @@ package com.codecool.bfsexample;
 
 import com.codecool.bfsexample.model.UserNode;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BreadthFirstSearcher {
@@ -12,10 +14,11 @@ public class BreadthFirstSearcher {
 
     public int distance(UserNode user1, UserNode user2) {
         int distance = 0;
-        user1.setSearched(false);
+        user1.setSearched(true);
 
         updateQueue(user1);
 
+        graphPlotter.highlightNodes(queue, user1);
         while (true) {
             distance++;
             if (queue.contains(user2)) {
@@ -26,6 +29,7 @@ public class BreadthFirstSearcher {
                 for (UserNode user :
                         searched) {
                     updateQueue(user);
+                    graphPlotter.highlightNodes(queue, user2);
                 }
                 searched.clear();
             }
@@ -40,7 +44,6 @@ public class BreadthFirstSearcher {
                 user.setSearched(false);
             }
         }
-        graphPlotter.highlightNodes(queue, selectedUser);
     }
 
     public BreadthFirstSearcher(GraphPlotter graphPlotter) {

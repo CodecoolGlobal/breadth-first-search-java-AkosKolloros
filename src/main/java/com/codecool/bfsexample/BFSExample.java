@@ -14,7 +14,7 @@ public class BFSExample {
 
         BreadthFirstSearcher BFS = new BreadthFirstSearcher(graphPlotter);
 
-        int distance = BFS.distance(users.get(1), users.get(120));
+        int distance = BFS.distance(users.get(1), users.get(10));
         System.out.println(distance);
         System.out.println("Done!");
     }
