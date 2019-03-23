@@ -2,9 +2,7 @@ package com.codecool.bfsexample;
 
 import com.codecool.bfsexample.model.UserNode;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class BreadthFirstSearcher {
@@ -12,28 +10,8 @@ public class BreadthFirstSearcher {
     private Set<UserNode> queue = new HashSet<>();
     private GraphPlotter graphPlotter;
 
-    public int distance(UserNode user1, UserNode user2) {
-        int distance = 0;
-        user1.setSearched(true);
-
-        updateQueue(user1);
-
-        graphPlotter.highlightNodes(queue, user1);
-        while (true) {
-            distance++;
-            if (queue.contains(user2)) {
-                return distance;
-            } else {
-                searched = new HashSet<>(queue);
-                queue.clear();
-                for (UserNode user :
-                        searched) {
-                    updateQueue(user);
-                    graphPlotter.highlightNodes(queue, user2);
-                }
-                searched.clear();
-            }
-        }
+    public BreadthFirstSearcher(GraphPlotter graphPlotter) {
+        this.graphPlotter = graphPlotter;
     }
 
     private void updateQueue(UserNode selectedUser) {
@@ -46,15 +24,42 @@ public class BreadthFirstSearcher {
         }
     }
 
-    public BreadthFirstSearcher(GraphPlotter graphPlotter) {
-        this.graphPlotter = graphPlotter;
+    public int distance(UserNode firstUser, UserNode lastUser) {
+        int distance = 0;
+
+        firstUser.setSearched(true);
+        updateQueue(firstUser);
+
+        graphPlotter.highlightNodes(queue, firstUser);
+        while (true) {
+            distance++;
+            if (queue.contains(lastUser)) {
+                return distance;
+            } else {
+                nextBreadth();
+                graphPlotter.highlightNodes(queue, lastUser);
+            }
+        }
     }
 
-    public Set<UserNode> friendsOfFriends(int distance) {
-        Set<UserNode> result = new HashSet<>();
+    private void nextBreadth() {
+        searched = new HashSet<>(queue);
+        queue.clear();
+        for (UserNode user :
+                searched) {
+            updateQueue(user);
+        }
+        searched.clear();
+    }
+
+    public Set<UserNode> friendsOfFriends(UserNode firstUser, int distance) {
+        Set<UserNode> results = new HashSet<>();
+
+        firstUser.setSearched(true);
+        updateQueue(firstUser);
 
         for (int i = 0; i < distance; i++) {
-
+            nextBreadth();
         }
 
         return null;
