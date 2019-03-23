@@ -59,10 +59,11 @@ public class BreadthFirstSearcher {
         updateQueue(firstUser);
 
         for (int i = 0; i < distance; i++) {
+            results.addAll(queue);
             nextBreadth();
         }
 
-        return null;
+        return results;
     }
 
     // bonus
