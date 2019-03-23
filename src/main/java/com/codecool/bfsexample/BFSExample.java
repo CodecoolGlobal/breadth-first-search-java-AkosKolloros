@@ -25,11 +25,11 @@ public class BFSExample {
 
         UserNode firstUser = users.get(0);
 
-//        int distance = BFS.distance(firstUser, users.get(10));
-//        System.out.println(distance);
+        int distance = BFS.distance(firstUser, users.get(30));
+        System.out.println(distance);
 
         Set<UserNode> friendsOfFriends = BFS.friendsOfFriends(firstUser, 2);
 
-        graphPlotter.highlightNodes(friendsOfFriends, firstUser);
+//        graphPlotter.highlightNodes(friendsOfFriends, firstUser);
     }
 }

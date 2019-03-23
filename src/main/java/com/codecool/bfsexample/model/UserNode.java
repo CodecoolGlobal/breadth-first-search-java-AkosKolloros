@@ -50,8 +50,8 @@ public class UserNode {
         this.lastName = lastName;
     }
 
-    public boolean isSearched() {
-        return searched;
+    public boolean isNotSearched() {
+        return !searched;
     }
 
     public void setSearched(boolean searched) {

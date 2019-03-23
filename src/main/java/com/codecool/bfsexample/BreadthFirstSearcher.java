@@ -17,18 +17,22 @@ public class BreadthFirstSearcher {
     private void updateQueue(UserNode selectedUser) {
         for (UserNode user :
                 selectedUser.getFriends()) {
-            if (!user.isSearched()) {
+            if (user.isNotSearched()) {
                 queue.add(user);
-                user.setSearched(false);
+                user.setSearched(true);
             }
         }
+    }
+
+    private void setupFirstQueue(UserNode firstUser) {
+        firstUser.setSearched(true);
+        updateQueue(firstUser);
     }
 
     public int distance(UserNode firstUser, UserNode lastUser) {
         int distance = 0;
 
-        firstUser.setSearched(true);
-        updateQueue(firstUser);
+        setupFirstQueue(firstUser);
 
         graphPlotter.highlightNodes(queue, firstUser);
         while (true) {
@@ -55,8 +59,7 @@ public class BreadthFirstSearcher {
     public Set<UserNode> friendsOfFriends(UserNode firstUser, int distance) {
         Set<UserNode> results = new HashSet<>();
 
-        firstUser.setSearched(true);
-        updateQueue(firstUser);
+        setupFirstQueue(firstUser);
 
         for (int i = 0; i < distance; i++) {
             results.addAll(queue);
