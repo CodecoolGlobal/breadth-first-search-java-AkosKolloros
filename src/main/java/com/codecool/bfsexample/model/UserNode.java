@@ -11,7 +11,6 @@ public class UserNode {
     private static long idCounter = 0;
     private String firstName;
     private String lastName;
-    private boolean searched;
 
     private Set<UserNode> friends = new HashSet<>();
 
@@ -20,7 +19,6 @@ public class UserNode {
         idCounter++;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.searched = false;
     }
 
     public long getId() {
@@ -50,15 +48,8 @@ public class UserNode {
         this.lastName = lastName;
     }
 
-    public boolean isNotSearched() {
-        return !searched;
-    }
-
-    public void setSearched(boolean searched) {
-        this.searched = searched;
-    }
-
     public String toString() {
         return firstName + "_" + lastName + " (" + id + ")";
     }
+
 }
