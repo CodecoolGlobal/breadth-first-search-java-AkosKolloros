@@ -25,7 +25,9 @@ public class UserNode {
         return id;
     }
 
-    public Set<UserNode> getFriends() {return friends;}
+    public Set<UserNode> getFriends() {
+        return friends;
+    }
 
     public void addFriend(UserNode friend) {
         friends.add(friend);

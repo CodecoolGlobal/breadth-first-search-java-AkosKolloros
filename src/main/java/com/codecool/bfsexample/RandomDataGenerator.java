@@ -15,7 +15,7 @@ class RandomDataGenerator {
             "Tanya", "Madeline", "Naomi", "Maggie", "Kerry", "Elmo", "Wylie", "Alec",
             "Axel", "Belle", "Cally", "Theodore", "Emmanuel", "Christopher", "Olympia"};
 
-    private String[] lastNames =  {
+    private String[] lastNames = {
             "Winifred", "Tanner", "Rajah", "Cedric", "Tyler", "Nicholas", "Abra", "Aurora",
             "Bryar", "Kibo", "Myles", "Hillary", "Lydia", "Dolan", "Lucian", "Prescott",
             "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson"
